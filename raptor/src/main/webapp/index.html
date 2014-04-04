@@ -1,0 +1,135 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script type="text/javascript" src="javascript/thirdparty/angular.min.js"></script>
+    <script src="javascript/creator-main.js"></script>
+    <link rel="stylesheet" href="css/creator-main.css">
+  </head>
+  <body>
+  	<div class="headerImage"></div>
+    <div ng-controller="main">
+    	<div ng-hide="showGenerator" class="navBar">
+    		<ul>
+    			<li><span class="navButton" ng-click="generateCharacter()">Create New</span></li>
+    			<li><span class="navButton">Edit Character</span></li>
+    		</ul>
+    	</div>
+    	<div ng-show="showGenerator">
+    		<div>
+    			<ul>
+    				<li class="breadcrumb"><span ng-show="step1.active" class="genNavActive">Select MetaType</span><span ng-hide="step1.active" class="genNavInactive">Select MetaType</span></li>
+    				<li class="breadcrumb"><span ng-show="step2.active" class="genNavActive">Select Qualities</span><span ng-hide="step2.active" class="genNavInactive">Select Qualities</span></li>
+    				<li class="breadcrumb"><span ng-show="step3.active" class="genNavActive">Assign Attributes</span><span ng-hide="step3.active" class="genNavInactive">Assign Attributes</span></li>
+    				<li class="breadcrumb"><span ng-show="step4.active" class="genNavActive">Select Skills</span><span ng-hide="step4.active" class="genNavInactive">Select Skills</span></li>
+    				<li class="breadcrumb"><span ng-show="step5.active" class="genNavActive">Gear Up</span><span ng-hide="step5.active" class="genNavInactive">Gear Up</span></li>
+    				<li class="breadcrumb"><span ng-show="step6.active" class="genNavActive">Customize</span><span ng-hide="step6.active" class="genNavInactive">Customize</span></li>
+    			</ul>
+    		</div>
+    		<div class="wrapper">
+    			<div class="content-left">
+    				<ul>
+    					<li class="btnOptions"><a class="navButton" ng-click="previous()">Previous</a></li>
+    					<li class="btnOptions"><a class="navButton" ng-click="next()">Next</a></li>
+    				</ul>	
+    			</div>
+    			<div class="content-mid">
+    				<div class="dataContainer" ng-show="step1.active">
+    					<table class="metaTable">
+    						<tr>
+    							<td>BP Cost</td>
+    							<td>Metatype</td>
+    							<td>BOD</td>
+    							<td>AGI</td>
+    							<td>REA</td>
+    							<td>STR</td>
+    							<td>CHA</td>
+    							<td>INT</td>
+    							<td>LOG</td>
+    							<td>WIL</td>
+    						</tr>
+    						<tr	ng-repeat="metaType in metaTypes" ng-click="selectMetaType(metaType)">
+    							<td>{{metaType.bpCost}}</td>
+    							<td>{{metaType.name}}</td>
+    							<td>{{metaType.bod}}</td>
+    							<td>{{metaType.agi}}</td>
+    							<td>{{metaType.rea}}</td>
+    							<td>{{metaType.str}}</td>
+    							<td>{{metaType.cha}}</td>
+    							<td>{{metaType.int}}</td>
+    							<td>{{metaType.log}}</td>
+    							<td>{{metaType.wil}}</td>
+    						</tr>
+    					</table>
+    					<span class="label">
+    						SELECTED METATYPE: {{character.metaType.name}}
+    					</span>
+    				</div>
+    				<div class="dataContainer" ng-show="step2.active">
+    					<span class="label">
+    						Build Points: {{bp}}
+    					</span>
+    					<table class="selectedQualities">
+    						<th>Selected Qualities</th>
+    						<tr>
+    							<td>Name</td>
+    							<td>Cost</td>
+    							<td>Remove</td>
+    						</tr>
+    						<tr ng-repeat="quality in character.qualities">
+    							<td>{{quality.description}}</td>
+    							<td>{{quality.cost}}</td>
+    							<td><a class="btnPlus" ng-click="removeQuality(quality,$index)">-</a></td>
+    						</tr>
+    					</table>
+    					<table class="positiveQualities">
+    						<th>Positive Qualities</th>
+    						<tr>
+    							<td>Name</td>
+    							<td>Cost</td>
+    							<td>Add</td>
+    						</tr>
+    						<tr ng-repeat="quality in positiveQualities">
+    							<td>{{quality.description}}</td>
+    							<td>{{quality.cost}}</td>
+    							<td><a class="btnPlus" ng-click="addQuality(quality,$index)">+</a></td>
+    						</tr>
+    					</table>
+    					<table class="negativeQualities">
+    						<th>Negative Qualities</th>
+    						<tr>
+    							<td>Name</td>
+    							<td>Cost</td>
+    							<td>Add</td>
+    						</tr>
+    						<tr ng-repeat="quality in negativeQualities">
+    							<td>{{quality.description}}</td>
+    							<td>{{quality.cost}}</td>
+    							<td><a class="btnPlus" ng-click="addQuality(quality,$index)">+</a></td>
+    						</tr>
+    					</table>
+    				</div>
+    	
+    				<div class="dataContainer" ng-show="step3.active">
+    					<span class="label">
+    						Build Points: {{bp}}
+    					</span>
+    					<table>
+    						<tr ng-repeat="attribute in character.attributes">
+    							<td><span class="attrSpan">{{attribute.description}}:</span><span class="attrSpan">{{attribute.value}}</span><span class="attrSpan"><a class="btnPlus" ng-click="addAttr(attribute)">+</a><a class="btnPlus" ng-click="subtractAttr(attribute)">-</a></span></td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div> 
+    			<div class="content-right">
+    				<div class="label">
+    					Build Points: {{bp}}
+    				</div>
+    				<div class="error">{{error}}</div>
+    			</div>    		
+    		</div>
+    		
+    		
+    	</div>
+    </div>
+  </body>
+</html>
