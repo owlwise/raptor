@@ -3,7 +3,6 @@ package creator;
 import static org.junit.Assert.*;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 
@@ -18,6 +17,7 @@ public class SkillTest
     pistolSkill.setGroup(SkillGroup.FIREARMS);
     pistolSkill.setRank(6);
     pistolSkill.setType(Type.ACTIVE);
+    pistolSkill.setDescription("The Pistols skill governs the use of all types of hand-held firearms, including hold-outs, light and heavy pistols, and tasers.");
     
     return pistolSkill;
   }
@@ -181,7 +181,7 @@ public class SkillTest
   public final void testToJSON() throws JSONException
   {
 	  Skill testSkill = getPistolSkill();
-	  String testobject = "{'cost':24,'name':'Pistol','group':'FIREARMS','rank':6,'type':'ACTIVE'}";
+	  String testobject = "{'cost':24,'name':'Pistol','group':'FIREARMS','rank':6,'type':'ACTIVE','description':'The Pistols skill governs the use of all types of hand-held firearms, including hold-outs, light and heavy pistols, and tasers.'}";
  	  JSONAssert.assertEquals(testobject, testSkill.toJSON(), true);
   } 
 }
