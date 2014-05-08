@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Skills Input Form</title>
+<script type="text/javascript" src="javascript/thirdparty/jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="javascript/thirdparty/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
+<link rel="stylesheet" type="text/css" href="javascript/thirdparty/jquery-ui-1.10.4.custom/css/dark-hive/jquery-ui-1.10.4.custom.min.css">
+<script>
+	$(function() {
+		$( "#tabs" ).tabs();
+	});
+    function addtab(count)
+    {
+    	var num_tabs = $("div#tabs ul li").length + 1;
+        $("div#tabs ul").append(
+            "<li><a href='#tab" + num_tabs + "'>#" + num_tabs + "</a></li>"
+        );
+        $("div#tabs").tabs("refresh");
+    }
+</script>
+</head>
+<body>
+<script>
+$(document).ready(function() {
+    $("#btnSubmit").click(function(){
+        addtab();
+    }); 
+});
+</script>
+<!-- This is the box that all of the tabs and contents of 
+the tabs will reside -->
+<div id="tabs">
+
+<!-- These are the tabs -->
+<ul class="tabs">
+	<li><a href="#tab_1_contents">Tab 1</a></li>
+	<li><a href="#tab_2_contents">Tab 2</a></li>
+	<li><a href="#tab_3_contents">Tab 3</a></li>
+</ul>
+<div id="tab_1_contents">
+	<p>
+	Ill never be your beast of burden
+	My back is broad but its a hurting
+	All I want is for you to make love to me
+	Ill never be your beast of burden
+	Ive walked for miles my feet are hurting
+	All I want is for you to make love to me
+	Am I hard enough
+	Am I rough enough
+	Am I rich enough
+	Im not too blind to see
+	</p>
+	</div>
+<div id="tab_2_contents">
+<p>
+Ill never be your beast of burden
+So lets go home and draw the curtains
+Music on the radio
+Come on baby make sweet love to me
+Am I hard enough
+Am I rough enough
+Am I rich enough
+Im not too blind to see
+Oh little sister
+Pretty, pretty, pretty, pretty, girl
+Youre a pretty, pretty, pretty, pretty, pretty, pretty girl
+Pretty, pretty
+Such a pretty, pretty, pretty girl
+Come on baby please, please, please
+Ill tell ya
+You can put me out
+On the street
+Put me out
+With no shoes on my feet
+But, put me out, put me out
+Put me out of misery
+</p>
+</div>
+<div id="tab_3_contents">
+<p>
+Yeah, all your sickness
+I can suck it up
+Throw it all at me
+I can shrug it off
+Theres one thing baby
+That I dont understand
+You keep on telling me
+I aint your kind of man
+Aint I rough enough, ooh baby
+Aint I tough enough
+Aint I rich enough, in love enough
+Ooh! Ooh! Please
+Ill never be your beast of burden
+Ill never be your beast of burden
+Never, never, never, never, never, never, never be
+Ill never be your beast of burden
+Ive walked for miles and my feet are hurting
+All I want is you to make love to me
+I dont need beast of burden
+I need no fussing
+I need no nursing
+Never, never, never, never, never, never, never be
+
+</p>
+
+<div class="demo">
+<br> <br> <br>   
+<input id = "btnSubmit" type="submit" value="addTab"/>
+<br> <br> <br>  
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
