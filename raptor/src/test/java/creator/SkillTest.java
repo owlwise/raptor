@@ -2,7 +2,10 @@ package creator;
 
 import static org.junit.Assert.*;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
 
 public class SkillTest
 {
@@ -11,7 +14,7 @@ public class SkillTest
     Skill pistolSkill = new Skill();
     
     pistolSkill.setCost(24);;
-    pistolSkill.setDescription("Pistol");
+    pistolSkill.setName("Pistol");
     pistolSkill.setGroup(SkillGroup.FIREARMS);
     pistolSkill.setRank(6);
     pistolSkill.setType(Type.ACTIVE);
@@ -23,7 +26,7 @@ public class SkillTest
     Skill automatics = new Skill();
     
     automatics.setCost(16);;
-    automatics.setDescription("Automatics");
+    automatics.setName("Automatics");
     automatics.setGroup(SkillGroup.FIREARMS);
     automatics.setRank(4);
     automatics.setType(Type.ACTIVE);
@@ -35,7 +38,7 @@ public class SkillTest
     Skill dodge = new Skill();
     
     dodge.setCost(16);;
-    dodge.setDescription("Dodge");
+    dodge.setName("Dodge");
     dodge.setGroup(SkillGroup.NONE);
     dodge.setRank(4);
     dodge.setType(Type.ACTIVE);
@@ -47,7 +50,7 @@ public class SkillTest
     Skill longArms = new Skill();
     
     longArms.setCost(12);;
-    longArms.setDescription("Long Arms");
+    longArms.setName("Long Arms");
     longArms.setGroup(SkillGroup.FIREARMS);
     longArms.setRank(3);
     longArms.setType(Type.ACTIVE);
@@ -59,7 +62,7 @@ public class SkillTest
     Skill heavyWeapons = new Skill();
     
     heavyWeapons.setCost(8);;
-    heavyWeapons.setDescription("Heavy Weapons");
+    heavyWeapons.setName("Heavy Weapons");
     heavyWeapons.setGroup(SkillGroup.FIREARMS);
     heavyWeapons.setRank(2);
     heavyWeapons.setType(Type.ACTIVE);
@@ -71,7 +74,7 @@ public class SkillTest
     Skill thrownWeapons = new Skill();
     
     thrownWeapons.setCost(8);;
-    thrownWeapons.setDescription("Thrown Weapons");
+    thrownWeapons.setName("Thrown Weapons");
     thrownWeapons.setGroup(SkillGroup.NONE);
     thrownWeapons.setRank(2);
     thrownWeapons.setType(Type.ACTIVE);
@@ -83,7 +86,7 @@ public class SkillTest
     Skill negotiation = new Skill();
     
     negotiation.setCost(8);;
-    negotiation.setDescription("Negotiation");
+    negotiation.setName("Negotiation");
     negotiation.setGroup(SkillGroup.INFLUENCE);
     negotiation.setRank(2);
     negotiation.setType(Type.ACTIVE);
@@ -95,7 +98,7 @@ public class SkillTest
     Skill infiltration = new Skill();
     
     infiltration.setCost(8);;
-    infiltration.setDescription("Infiltration");
+    infiltration.setName("Infiltration");
     infiltration.setGroup(SkillGroup.STEALTH);
     infiltration.setRank(2);
     infiltration.setType(Type.ACTIVE);
@@ -107,7 +110,7 @@ public class SkillTest
     Skill armourer = new Skill();
     
     armourer.setCost(8);;
-    armourer.setDescription("Armorer");
+    armourer.setName("Armorer");
     armourer.setGroup(SkillGroup.NONE);
     armourer.setRank(2);
     armourer.setType(Type.ACTIVE);
@@ -119,7 +122,7 @@ public class SkillTest
     Skill perception = new Skill();
     
     perception.setCost(16);;
-    perception.setDescription("Perception");
+    perception.setName("Perception");
     perception.setGroup(SkillGroup.NONE);
     perception.setRank(4);
     perception.setType(Type.ACTIVE);
@@ -131,7 +134,7 @@ public class SkillTest
     Skill etiquette = new Skill();
     
     etiquette.setCost(4);;
-    etiquette.setDescription("Etiquette - Military specialization");
+    etiquette.setName("Etiquette - Military specialization");
     etiquette.setGroup(SkillGroup.INFLUENCE);
     etiquette.setRank(2);
     etiquette.setType(Type.ACTIVE);
@@ -148,10 +151,10 @@ public class SkillTest
   }
 
   @Test
-  public final void testDescription()
+  public final void testName()
   {
     Skill testSkill = getPistolSkill();
-    assertSame("Skill shojuld be called Pistol","Pistol",testSkill.getDescription());
+    assertSame("Skill shojuld be called Pistol","Pistol",testSkill.getName());
   }
 
   @Test
@@ -174,5 +177,12 @@ public class SkillTest
     Skill testSkill = getPistolSkill();
     assertSame("Should be a cost of 24 BP",24,testSkill.getCost());
   }
-
+  @Test
+  public final void testToJSON() throws JSONException
+  {
+	  Skill testSkill = getPistolSkill();
+	  String testobject = "{'cost':24,'name':'Pistol','group':'FIREARMS','rank':6,'type':'ACTIVE'}";
+ 	  JSONAssert.assertEquals(testobject, testSkill.toJSON(), true);
+  } 
 }
+

@@ -1,7 +1,11 @@
 package creator;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Skill
 {
+  String name;
   Enum<Type> type;
   String description;
   Enum<SkillGroup> group;
@@ -36,6 +40,24 @@ public class Skill
   {
     return rank;
   }
+  public JSONObject toJSON()
+  {
+	  JSONObject json = new JSONObject();
+	  try 
+	  {
+		  json.put("cost", this.cost);
+		  json.put("name",  this.name);
+		  json.put("description", this.getDescription());
+		  json.put("group", this.getGroup().name());
+		  json.put("rank", this.getRank());
+		  json.put("type", this.getType().name());
+	  } 
+	  catch (JSONException e) 
+	  {
+		  e.printStackTrace();
+	  }
+	  return json;
+  }
   public void setRank(int rank)
   {
     this.rank = rank;
@@ -48,5 +70,11 @@ public class Skill
   {
     this.cost = cost;
   }
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
 
 }
