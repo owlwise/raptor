@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flow="http://www.springframework.org/schema/webflow-config"
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+	default-lazy-init="true">
+
+	<bean id="ruleServiceProcess"
+		class="com.connecture.services.ruleservice.process.RuleServiceProcess"
+		scope="thread">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="configEnvironment">
+			<value>${process.ruleservice.configEnvironment}</value>
+		</property>
+		<property name="xmlTools" ref="xmlTools"/>
+	</bean>
+	
+	<bean id="importExportProcess"
+		class="com.connecture.services.ruleservice.process.ImportExportProcess"
+		scope="thread">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="ruleServiceProcess" ref="ruleServiceProcess"/>
+	</bean>
+	
+	<bean id="xmlRulePackageProvider"
+		class="com.connecture.services.ruleservice.process.xmlapi.XMLRulePackageProvider"
+		scope="thread">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="ruleServiceProcess" ref="ruleServiceProcess"/>
+	</bean>
+	<bean id="zipRulePackageProvider"
+		class="com.connecture.services.ruleservice.process.xmlapi.ZipRulePackageProvider"
+		scope="thread">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="ruleServiceProcess" ref="ruleServiceProcess"/>
+	</bean>
+	<bean id="rulePackageUtils"
+		class="com.connecture.services.ruleservice.process.xmlapi.RulePackageUtils"
+		scope="thread">
+		<property name="ruleServiceProcess" ref="ruleServiceProcess"/>
+		<property name="xmlRulePackageProvider" ref="xmlRulePackageProvider"/>
+		<property name="zipRulePackageProvider" ref="zipRulePackageProvider"/>
+	</bean>
+	<bean id="xmlTools"
+		class="com.connecture.services.ruleservice.process.domainmodel.XmlTools"
+		scope="thread">
+	</bean>
+</beans>
