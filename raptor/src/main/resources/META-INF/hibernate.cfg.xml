@@ -5,22 +5,9 @@
 
 <hibernate-configuration>
 	<session-factory>
-    	<!-- Rule service domain -->
-		<mapping class="com.connecture.services.ruleservice.process.domain.RuleGroupInfo"/>
-		<mapping class="com.connecture.services.ruleservice.process.domain.RulePackageInfo"/>
-		<mapping class="com.connecture.services.ruleservice.process.domain.RuleSetInfo"/>
-		<mapping class="com.connecture.services.ruleservice.process.domain.RulesetRuleInfo"/>
-		<mapping class="com.connecture.services.ruleservice.process.domain.RuleInfo"/>
-		<mapping class="com.connecture.services.ruleservice.process.domain.RuleSetInfo"/>
-		<mapping class="com.connecture.services.ruleservice.process.domain.RulesetRuleInfo"/>
-		<mapping class="com.connecture.services.ruleservice.process.domain.RuleTaskInfo"/>
-		<mapping class="com.connecture.services.ruleservice.process.domain.DecisionTableInfo"/>
-		<mapping class="com.connecture.services.ruleservice.process.domain.DecisionTableColumnInfo"/>
-		<mapping class="com.connecture.services.ruleservice.process.domain.DecisionTableRowInfo"/>
-		<mapping class="com.connecture.services.ruleservice.process.domain.DomainModelInfo"/>
-		<!-- Reference data -->
-		<mapping class="com.connecture.services.ruleservice.process.initialization.DataTypeInfo"/>
-		<mapping class="com.connecture.services.ruleservice.process.initialization.RuleTaskTypeInfo"/>
-		<mapping class="com.connecture.services.ruleservice.process.initialization.RulePackageStatusTypeInfo"/>
+    	<!-- creator service domain -->
+		<mapping class="creator.Skill"/>
+		<mapping class="creator.Attribute"/>
+		<mapping class="creator.Quality"/>
 	</session-factory>
 </hibernate-configuration>
